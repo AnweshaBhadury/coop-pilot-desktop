@@ -1,3 +1,4 @@
+import { useState } from "react";
 const blogCards = [
   {
     id: 1,
@@ -5,11 +6,14 @@ const blogCards = [
     imageSrc: "https://c.animaapp.com/J1nhJHDS/img/images--2--1@2x.png",
     imageAlt: "Illustration for Why Cooperatives Need to Go Digital",
     title: "Why Cooperatives Need to Go Digital",
-    cardClassName: "absolute top-0 left-0 w-[275px] h-[327px] rounded-[20px]",
-    imageClassName:
-      "absolute top-3 left-[15px] w-[247px] h-[185px] aspect-[1.34] object-cover",
-    titleClassName:
-      "absolute top-[223px] left-[19px] w-[238px] [font-family:'Alike',Helvetica] font-normal text-[#310000] text-2xl text-center tracking-[0] leading-[normal]",
+    cardClassName:
+"relative w-full h-full rounded-[20px]",
+
+imageClassName:
+"absolute top-3 left-1/2 -translate-x-1/2 w-[247px] h-[185px] object-cover",
+
+titleClassName:
+"absolute top-[223px] left-1/2 -translate-x-1/2 w-[238px] text-center [font-family:'Alike',Helvetica] font-normal text-[#310000] text-2xl"
   },
   {
     id: 2,
@@ -18,11 +22,13 @@ const blogCards = [
     imageAlt: "Illustration for From Paper to Platform",
     title: "From Paper to Platform",
     cardClassName:
-      "absolute top-0 left-[318px] w-[275px] h-[327px] rounded-[20px]",
-    imageClassName:
-      "absolute top-3 left-[334px] w-[247px] h-[185px] aspect-[1.34] object-cover",
-    titleClassName:
-      "absolute top-[231px] left-[344px] w-[238px] [font-family:'Alike',Helvetica] font-normal text-[#310000] text-2xl text-center tracking-[0] leading-[normal]",
+"relative w-full h-full rounded-[20px]",
+
+imageClassName:
+"absolute top-3 left-1/2 -translate-x-1/2 w-[247px] h-[185px] object-cover",
+
+titleClassName:
+"absolute top-[223px] left-1/2 -translate-x-1/2 w-[238px] text-center [font-family:'Alike',Helvetica] font-normal text-[#310000] text-2xl"
   },
   {
     id: 3,
@@ -31,11 +37,13 @@ const blogCards = [
     imageAlt: "Illustration for Simplifying Governance in Cooperatives",
     title: "Simplifying Governance in Cooperatives",
     cardClassName:
-      "absolute top-0 left-[636px] w-[275px] h-[327px] rounded-[20px]",
-    imageClassName:
-      "absolute top-3 left-[650px] w-[247px] h-[185px] aspect-[1.34] object-cover",
-    titleClassName:
-      "absolute top-[231px] left-[654px] w-[247px] [font-family:'Alike',Helvetica] font-normal text-[#310000] text-[22px] text-center tracking-[0] leading-[normal]",
+"relative w-full h-full rounded-[20px]",
+
+imageClassName:
+"absolute top-3 left-1/2 -translate-x-1/2 w-[247px] h-[185px] object-cover",
+
+titleClassName:
+"absolute top-[223px] left-1/2 -translate-x-1/2 w-[238px] text-center [font-family:'Alike',Helvetica] font-normal text-[#310000] text-2xl"
   },
   {
     id: 4,
@@ -44,11 +52,13 @@ const blogCards = [
     imageAlt: "Illustration for Audit Without the Stress",
     title: "Audit Without the Stress",
     cardClassName:
-      "absolute top-0 left-[954px] w-[275px] h-[327px] rounded-[20px]",
-    imageClassName:
-      "absolute top-3 left-[967px] w-[247px] h-[185px] aspect-[1.34] object-cover",
-    titleClassName:
-      "absolute top-[227px] left-[979px] w-[238px] [font-family:'Alike',Helvetica] font-normal text-[#310000] text-2xl text-center tracking-[0] leading-[normal]",
+"relative w-full h-full rounded-[20px]",
+
+imageClassName:
+"absolute top-3 left-1/2 -translate-x-1/2 w-[247px] h-[185px] object-cover",
+
+titleClassName:
+"absolute top-[223px] left-1/2 -translate-x-1/2 w-[238px] text-center [font-family:'Alike',Helvetica] font-normal text-[#310000] text-2xl"
   },
 ];
 
@@ -76,78 +86,217 @@ const ctaButtons = [
 ];
 
 export const TrustLogosSection = () => {
+  const [cards, setCards] = useState(blogCards);
+const [animating, setAnimating] = useState(false);
+
+  const nextSlide = () => {
+  if (animating) return;
+
+  setAnimating(true);
+
+  setTimeout(() => {
+    setCards((prev) => [
+      ...prev.slice(1),
+      prev[0],
+    ]);
+
+    setAnimating(false);
+
+  }, 300);
+};
+
+  const prevSlide = () => {
+  if (animating) return;
+
+  setAnimating(true);
+
+  setTimeout(() => {
+    setCards((prev) => [
+      prev[prev.length - 1],
+      ...prev.slice(0, -1),
+    ]);
+
+    setAnimating(false);
+
+  }, 300);
+};
+
   return (
     <section
       aria-label="Blog and call to action"
       className="absolute top-[8537px] left-0 w-full h-[1247px]"
     >
       <div className="absolute top-0 left-0 w-full h-[1247px] bg-white">
+
+        {/* HEADER */}
+
         <header>
-          <div className="absolute h-[3.74%] top-[4.80%] left-[calc(50.00%_-_198px)] w-[395px] [font-family:'DM_Sans',Helvetica] font-semibold text-[#000800] text-2xl text-center tracking-[0] leading-[normal]">
+          <div className="absolute h-[3.74%] top-[4.80%] left-[calc(50%-198px)] w-[395px] text-2xl text-center font-semibold">
             Blog
           </div>
-          <div className="absolute top-[87px] left-[calc(50.00%_-_119px)] w-[251px] h-[75px]">
-            <h2 className="absolute top-0 left-[calc(50.00%_-_18px)] w-[139px] [font-family:'Abhaya_Libre_SemiBold-Regular',Helvetica] font-normal text-black text-[50px] text-center tracking-[0] leading-[normal]">
-              next
+
+          <div className="absolute top-[87px] left-1/2 -translate-x-1/2">
+            <h2 className="text-[55px] font-normal">
+              Read next
             </h2>
-            <div className="absolute top-0.5 left-0 w-[135px] [font-family:'Abhaya_Libre_SemiBold-Regular',Helvetica] font-normal text-black text-[55px] tracking-[0] leading-[normal]">
-              Read
-            </div>
           </div>
         </header>
+
+        {/* CARDS */}
+
         <div
-          aria-label="Blog articles"
-          className="absolute top-[233px] left-1/2 -translate-x-1/2 w-[95%] max-w-[1229px] h-[327px]"
+          className="
+absolute
+top-[220px]
+
+left-1/2
+-translate-x-1/2
+
+w-[95%]
+max-w-[1229px]
+
+flex
+flex-nowrap
+justify-center
+gap-6
+
+overflow-visible
+pt-6
+
+transition-all
+duration-700
+ease-in-out
+"
         >
-          {blogCards.map((card) => (
-            <article key={card.id}>
-              <div className={`${card.cardClassName} ${card.bgClass}`} />
-              <img
-                className={card.imageClassName}
-                alt={card.imageAlt}
-                src={card.imageSrc}
+          {cards.map((card) => (
+            <article
+              key={card.id}
+              className="
+              relative
+              w-[275px]
+              h-[327px]
+              transform-gpu
+
+              transition-all
+              duration-700
+              ease-in-out
+
+              hover:scale-105
+              hover:-translate-y-3
+              hover:shadow-2xl
+              cursor-pointer
+            "
+            >
+              <div
+                className={`${card.cardClassName} ${card.bgClass}`}
               />
-              <h3 className={card.titleClassName}>{card.title}</h3>
+
+              <img
+                src={card.imageSrc}
+                alt={card.imageAlt}
+                className={card.imageClassName}
+              />
+
+              <h3 className={card.titleClassName}>
+                {card.title}
+              </h3>
             </article>
           ))}
         </div>
+
+        {/* LEFT */}
+
         <button
-          type="button"
-          aria-label="Previous blog articles"
-          className="absolute top-[369px] left-[26px] w-[55px] h-14 bg-black rounded-[27.5px/28px] flex items-center justify-center"
+          onClick={prevSlide}
+          className="
+          absolute
+          top-[369px]
+          left-[26px]
+
+          w-[55px]
+          h-[55px]
+
+          rounded-full
+          bg-black
+
+          flex
+          items-center
+          justify-center
+
+          transition
+          duration-300
+
+          hover:bg-[#9c003e]
+          hover:scale-110
+        "
         >
           <img
-            className="w-[25px] h-[27px]"
-            alt=""
-            aria-hidden="true"
+            className="w-6"
             src="https://c.animaapp.com/J1nhJHDS/img/vector-4.svg"
           />
         </button>
+
+        {/* RIGHT */}
+
         <button
-          type="button"
-          aria-label="Next blog articles"
-          className="absolute top-[369px] left-[1360px] w-[55px] h-14 bg-black rounded-[27.5px/28px] flex items-center justify-center"
+          onClick={nextSlide}
+          className="
+          absolute
+          top-[369px]
+          right-[26px]
+
+          w-[55px]
+          h-[55px]
+
+          rounded-full
+          bg-black
+
+          flex
+          items-center
+          justify-center
+
+          transition
+          duration-300
+
+          hover:bg-[#9c003e]
+          hover:scale-110
+        "
         >
           <img
-            className="w-[25px] h-[27px]"
-            alt=""
-            aria-hidden="true"
+            className="w-6"
             src="https://c.animaapp.com/J1nhJHDS/img/vector-3.svg"
           />
         </button>
-        <div className="absolute top-[calc(50.00%_-_2px)] right-[580px] w-[279px] h-[79px]">
+
+        {/* READ ALL */}
+
+        <div className="absolute top-[622px] left-1/2 -translate-x-1/2">
+
           <button
-            type="button"
-            className="relative w-full h-full"
-            aria-label="Read all blog posts"
+            className="
+            px-16
+            py-5
+
+            rounded-[15px]
+
+            bg-black
+            text-white
+
+            text-[32px]
+
+            transition-all
+            duration-300
+
+            hover:bg-[#9c003e]
+            hover:scale-105
+          "
           >
-            <div className="absolute top-[calc(50.00%_-_40px)] right-[23px] w-64 h-[79px] rounded-[15px] border-[3px] border-solid border-black bg-[linear-gradient(90deg,rgba(0,0,0,1)_0%,rgba(0,0,0,1)_100%)]" />
-            <span className="absolute top-[calc(50.00%_-_18px)] right-[3px] w-56 [-webkit-text-stroke:1px_#ffffff] [font-family:'Sora',Helvetica] font-light text-white text-[32px] whitespace-nowrap tracking-[0] leading-[normal]">
-              Read All →
-            </span>
+            Read All →
           </button>
+
         </div>
       </div>
+
       <section
   aria-label="Product call to action"
   className="absolute top-[765px] left-0 w-full h-[482px] overflow-hidden"
